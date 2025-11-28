@@ -2,7 +2,8 @@ export interface BlogPost {
   id: string;
   title: string;
   excerpt: string;
-  content: string; // Markdown content
+  content?: string; // Optional: use this for short posts
+  contentPath?: string; // Optional: path to .md file in public folder (e.g., '/posts/my-story.md')
   date: string; // ISO date string
   readTime: string;
   tags: string[];

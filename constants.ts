@@ -1,7 +1,7 @@
 import { BlogPost } from './types';
 
-export const APP_NAME = "ZenBlog";
-export const AUTHOR_NAME = "Alex Developer";
+export const APP_NAME = "ChirsV Blog";
+export const AUTHOR_NAME = "Eric Lee";
 
 // This is the "Hardcoded" content that serves as the permanent blog on GitHub Pages.
 // Users can edit this file to add new posts permanently.
@@ -66,5 +66,18 @@ If you haven't made the switch yet, give it a week. You won't go back.
     tags: ["Engineering", "TypeScript"],
     author: AUTHOR_NAME,
     coverImage: "https://picsum.photos/800/401?grayscale"
+  },
+  // Example of using an external file to keep constants.ts small:
+  /*
+  {
+    id: "external-content-demo",
+    title: "Example of External Content",
+    excerpt: "This post loads its content from a markdown file in the public folder, keeping the main bundle size small.",
+    contentPath: "/posts/example.md", // You would create 'public/posts/example.md'
+    date: "2024-03-21",
+    readTime: "1 min read",
+    tags: ["Demo", "Optimization"],
+    author: AUTHOR_NAME,
   }
+  */
 ];

@@ -8,9 +8,12 @@ import { BlogPost } from '../types';
 const Post: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [post, setPost] = useState<BlogPost | undefined>(undefined);
+  const [markdownContent, setMarkdownContent] = useState<string>('');
+  const [isLoadingContent, setIsLoadingContent] = useState(false);
   const [copied, setCopied] = useState(false);
   const navigate = useNavigate();
 
+  // 1. Fetch Post Metadata
   useEffect(() => {
     if (id) {
       const foundPost = getPostById(id);
@@ -22,21 +25,59 @@ const Post: React.FC = () => {
     }
   }, [id, navigate]);
 
+  // 2. Fetch Content (Inline or External)
+  useEffect(() => {
+    if (!post) return;
+
+    const loadContent = async () => {
+      // Priority 1: Inline content (Drafts or short posts)
+      if (post.content) {
+        setMarkdownContent(post.content);
+        return;
+      }
+
+      // Priority 2: External file (for large permanent posts)
+      if (post.contentPath) {
+        setIsLoadingContent(true);
+        try {
+          const response = await fetch(post.contentPath);
+          if (!response.ok) {
+            throw new Error(`Failed to load content from ${post.contentPath}`);
+          }
+          const text = await response.text();
+          setMarkdownContent(text);
+        } catch (error) {
+          console.error(error);
+          setMarkdownContent("# Error\n\nFailed to load post content. Please check if the markdown file exists in the public folder.");
+        } finally {
+          setIsLoadingContent(false);
+        }
+      }
+    };
+
+    loadContent();
+  }, [post]);
+
   const handleCopyJson = () => {
     if (post) {
-        // Create a clean copy without extra properties if any
         const postToCopy = {
             id: post.id,
             title: post.title,
             excerpt: post.excerpt,
-            content: post.content,
+            // We give the user a hint if they want to use external files
+            content: post.content ? post.content : undefined,
+            contentPath: post.contentPath ? post.contentPath : undefined,
             date: post.date,
             readTime: post.readTime,
             tags: post.tags,
             author: post.author,
             coverImage: post.coverImage
         };
-        const jsonString = JSON.stringify(postToCopy, null, 2);
+        
+        // Remove undefined keys for cleaner JSON
+        const cleanPost = JSON.parse(JSON.stringify(postToCopy));
+        
+        const jsonString = JSON.stringify(cleanPost, null, 2);
         navigator.clipboard.writeText(jsonString + ",");
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
@@ -87,23 +128,30 @@ const Post: React.FC = () => {
       )}
 
       {/* Markdown Content Area */}
-      <div className="prose prose-lg dark:prose-invert prose-headings:font-bold prose-headings:tracking-tight prose-a:text-primary-600 hover:prose-a:text-primary-500 prose-img:rounded-xl mx-auto">
-        <ReactMarkdown
-          components={{
-             h1: ({node, ...props}) => <h2 className="text-3xl font-bold mt-12 mb-6" {...props} />, // Demote h1 to h2 in body
-             h2: ({node, ...props}) => <h2 className="text-2xl font-bold mt-10 mb-4 pb-2 border-b border-gray-200 dark:border-gray-700" {...props} />,
-             p: ({node, ...props}) => <p className="mb-6 leading-relaxed text-gray-700 dark:text-gray-300" {...props} />,
-             blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-primary-500 pl-4 italic my-6 text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-800/50 py-2 pr-4 rounded-r" {...props} />,
-             code: ({node, ...props}) => {
-                const isInline = !String(props.children).includes('\n');
-                return isInline 
-                 ? <code className="bg-gray-100 dark:bg-gray-800 rounded px-1.5 py-0.5 text-sm font-mono text-primary-700 dark:text-primary-300" {...props} />
-                 : <pre className="bg-gray-900 text-gray-100 p-4 rounded-xl overflow-x-auto my-6 text-sm font-mono shadow-inner"><code {...props} /></pre>
-             }
-          }}
-        >
-          {post.content}
-        </ReactMarkdown>
+      <div className="prose prose-lg dark:prose-invert prose-headings:font-bold prose-headings:tracking-tight prose-a:text-primary-600 hover:prose-a:text-primary-500 prose-img:rounded-xl mx-auto min-h-[200px]">
+        {isLoadingContent ? (
+          <div className="flex flex-col items-center justify-center space-y-4 py-12 opacity-60">
+             <div className="w-8 h-8 border-4 border-primary-600 border-t-transparent rounded-full animate-spin"></div>
+             <p className="text-sm font-medium">Loading content...</p>
+          </div>
+        ) : (
+          <ReactMarkdown
+            components={{
+              h1: ({node, ...props}) => <h2 className="text-3xl font-bold mt-12 mb-6" {...props} />, // Demote h1 to h2 in body
+              h2: ({node, ...props}) => <h2 className="text-2xl font-bold mt-10 mb-4 pb-2 border-b border-gray-200 dark:border-gray-700" {...props} />,
+              p: ({node, ...props}) => <p className="mb-6 leading-relaxed text-gray-700 dark:text-gray-300" {...props} />,
+              blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-primary-500 pl-4 italic my-6 text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-800/50 py-2 pr-4 rounded-r" {...props} />,
+              code: ({node, ...props}) => {
+                  const isInline = !String(props.children).includes('\n');
+                  return isInline 
+                  ? <code className="bg-gray-100 dark:bg-gray-800 rounded px-1.5 py-0.5 text-sm font-mono text-primary-700 dark:text-primary-300" {...props} />
+                  : <pre className="bg-gray-900 text-gray-100 p-4 rounded-xl overflow-x-auto my-6 text-sm font-mono shadow-inner"><code {...props} /></pre>
+              }
+            }}
+          >
+            {markdownContent}
+          </ReactMarkdown>
+        )}
       </div>
 
       <div className="pt-12 border-t border-gray-200 dark:border-gray-800 mt-12 flex flex-col items-center gap-6">
@@ -127,7 +175,7 @@ const Post: React.FC = () => {
                 </button>
              </div>
              <p className="text-xs text-gray-400 dark:text-gray-500">
-                If you like this post, copy the config and add it to <code>constants.ts</code> to make it permanent.
+                To reduce file size, you can save the content to a <code>.md</code> file in <code>/public</code> and use <code>contentPath</code> instead of <code>content</code>.
              </p>
           </div>
       </div>
