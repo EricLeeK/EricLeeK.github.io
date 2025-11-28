@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
-import { ArrowLeft, Calendar, Clock, User} from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, User, Tag, Copy, Check, Terminal } from 'lucide-react';
 import { getPostById } from '../services/blogService';
 import { BlogPost } from '../types';
 
 const Post: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [post, setPost] = useState<BlogPost | undefined>(undefined);
+  const [copied, setCopied] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,6 +21,27 @@ const Post: React.FC = () => {
       }
     }
   }, [id, navigate]);
+
+  const handleCopyJson = () => {
+    if (post) {
+        // Create a clean copy without extra properties if any
+        const postToCopy = {
+            id: post.id,
+            title: post.title,
+            excerpt: post.excerpt,
+            content: post.content,
+            date: post.date,
+            readTime: post.readTime,
+            tags: post.tags,
+            author: post.author,
+            coverImage: post.coverImage
+        };
+        const jsonString = JSON.stringify(postToCopy, null, 2);
+        navigator.clipboard.writeText(jsonString + ",");
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+    }
+  };
 
   if (!post) return <div className="flex justify-center py-20"><div className="w-8 h-8 border-4 border-primary-600 border-t-transparent rounded-full animate-spin"></div></div>;
 
@@ -84,10 +106,30 @@ const Post: React.FC = () => {
         </ReactMarkdown>
       </div>
 
-      <div className="pt-12 border-t border-gray-200 dark:border-gray-800 mt-12">
-          <p className="text-center italic text-gray-500">
+      <div className="pt-12 border-t border-gray-200 dark:border-gray-800 mt-12 flex flex-col items-center gap-6">
+          <p className="italic text-gray-500">
              Thanks for reading.
           </p>
+          
+          {/* Admin / Developer Tools */}
+          <div className="w-full max-w-lg bg-gray-50 dark:bg-gray-800/50 rounded-xl p-4 border border-gray-200 dark:border-gray-700/50">
+             <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-gray-500">
+                    <Terminal size={14} />
+                    <span>Developer Config</span>
+                </div>
+                <button
+                    onClick={handleCopyJson}
+                    className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 bg-white dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded border border-gray-200 dark:border-gray-600 transition-colors"
+                >
+                    {copied ? <Check size={14} className="text-green-500"/> : <Copy size={14} />}
+                    {copied ? "Copied!" : "Copy JSON"}
+                </button>
+             </div>
+             <p className="text-xs text-gray-400 dark:text-gray-500">
+                If you like this post, copy the config and add it to <code>constants.ts</code> to make it permanent.
+             </p>
+          </div>
       </div>
     </article>
   );

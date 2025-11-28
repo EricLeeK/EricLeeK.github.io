@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://github.com/EricLeeK/Shiyao.github.io.git",
+  "homepage": "https://<USERNAME>.github.io/<REPO-NAME>",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

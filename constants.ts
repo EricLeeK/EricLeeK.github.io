@@ -1,7 +1,7 @@
 import { BlogPost } from './types';
 
-export const APP_NAME = "ChrisVBlog";
-export const AUTHOR_NAME = "Li Shiyao";
+export const APP_NAME = "ZenBlog";
+export const AUTHOR_NAME = "Alex Developer";
 
 // This is the "Hardcoded" content that serves as the permanent blog on GitHub Pages.
 // Users can edit this file to add new posts permanently.

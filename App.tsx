@@ -7,13 +7,13 @@ import Editor from './pages/Editor';
 import About from './pages/About';
 
 // Helper component to scroll to top on route change
-// const ScrollToTop = () => {
-//     const { pathname } = React.useMemo(() => new URL(window.location.href), []);
-//     React.useEffect(() => {
-//         window.scrollTo(0, 0);
-//     }, [pathname]);
-//     return null;
-// }
+const ScrollToTop = () => {
+    const { pathname } = React.useMemo(() => new URL(window.location.href), []);
+    React.useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
+    return null;
+}
 
 const App: React.FC = () => {
   return (
