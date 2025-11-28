@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
-import { ArrowLeft, Calendar, Clock, User, Tag, Copy, Check, Terminal } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, User, Copy, Check, Terminal } from 'lucide-react';
 import { getPostById } from '../services/blogService';
 import { BlogPost } from '../types';
 
