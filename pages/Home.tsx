@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Calendar, Clock, Tag } from 'lucide-react';
+import { ArrowRight, Calendar, Clock} from 'lucide-react';
 import { getPosts } from '../services/blogService';
 import { BlogPost } from '../types';
 
