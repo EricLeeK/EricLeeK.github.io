@@ -5,6 +5,8 @@ import Home from './pages/Home';
 import Post from './pages/Post';
 import Editor from './pages/Editor';
 import About from './pages/About';
+import Musings from './pages/Musings';
+import Musing from './pages/Musing';
 
 // Helper component to scroll to top on route change
 const ScrollToTop = () => {
@@ -23,6 +25,8 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/post/:id" element={<Post />} />
+          <Route path="/musings" element={<Musings />} />
+          <Route path="/musing/:id" element={<Musing />} />
           <Route path="/editor" element={<Editor />} />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<Navigate to="/" replace />} />

@@ -121,7 +121,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <div className="max-w-4xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
           <p>© {new Date().getFullYear()} {APP_NAME}. Built with React & Tailwind.</p>
           <div className="flex items-center gap-4">
-            <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-gray-900 dark:hover:text-white transition-colors">
+            <a href="https://github.com/EricLeeK" target="_blank" rel="noreferrer" className="hover:text-gray-900 dark:hover:text-white transition-colors">
               <Github size={20} />
             </a>
             <Link to="/editor" className="flex items-center gap-1 hover:text-primary-600 transition-colors">
