@@ -83,6 +83,17 @@ Nano Banana Pro 不只是又一个模型迭代，它是一次根本性的范式�
     author: AUTHOR_NAME,
     coverImage: "https://picsum.photos/800/402?grayscale",
   },
+  {
+    id: "ai-tools-thinking",
+    title: "AI工具的使用思考",
+    excerpt: "在如今的AI时代，不会使用AI工具进行工作学习我认为是一个非常大的亏损，本文主要介绍的是LLM相关的工具，以及文生图相关的应用。",
+    contentPath: "/posts/AI工具的使用思考.md",
+    date: "2025-11-30",
+    readTime: "3 min read",
+    tags: ["AI", "Tools", "Productivity"],
+    author: AUTHOR_NAME,
+    coverImage: "/images/Ai_tools-en.jpg",
+  },
   // Example of using an external file to keep constants.ts small:
   /*
   {
