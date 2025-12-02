@@ -38,16 +38,16 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const navLinks = [
     { label: 'Home', path: '/' },
     { label: 'About', path: '/about' },
-    { label: 'Write', path: '/editor' }, 
+    { label: 'Write', path: '/editor' },
   ];
 
   return (
-    <div className="min-h-screen flex flex-col font-sans selection:bg-primary-500 selection:text-white">
+    <div className="min-h-screen flex flex-col font-sans selection:bg-sage-200 selection:text-sage-600 bg-bg-primary dark:bg-bg-dark text-text-main dark:text-gray-100 transition-colors duration-300">
       {/* Header */}
-      <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-white/70 dark:bg-gray-900/80 border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+      <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border-b border-sage-100 dark:border-gray-800 transition-colors duration-300">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-          <Link to="/" className="text-xl font-bold tracking-tight text-gray-900 dark:text-white flex items-center gap-2">
-            <span className="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center text-white text-sm">Z</span>
+          <Link to="/" className="text-xl font-bold tracking-tight text-text-main dark:text-white flex items-center gap-2 font-serif">
+            <span className="w-8 h-8 bg-sage-400 rounded-xl flex items-center justify-center text-white text-sm shadow-sm">Z</span>
             {APP_NAME}
           </Link>
 
@@ -57,16 +57,15 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-sm font-medium transition-colors hover:text-primary-600 dark:hover:text-primary-400 ${
-                  location.pathname === link.path ? 'text-primary-600 dark:text-primary-400' : 'text-gray-600 dark:text-gray-400'
-                }`}
+                className={`text-sm font-bold transition-colors hover:text-sage-500 dark:hover:text-sage-400 ${location.pathname === link.path ? 'text-sage-600 dark:text-sage-400' : 'text-text-muted dark:text-gray-400'
+                  }`}
               >
                 {link.label}
               </Link>
             ))}
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 transition-colors"
+              className="p-2 rounded-full hover:bg-sage-50 dark:hover:bg-gray-800 text-text-muted dark:text-gray-400 transition-colors"
               aria-label="Toggle Dark Mode"
             >
               {isDark ? <Sun size={20} /> : <Moon size={20} />}
@@ -75,15 +74,15 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-4 md:hidden">
-             <button
+            <button
               onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 transition-colors"
+              className="p-2 rounded-full hover:bg-sage-50 dark:hover:bg-gray-800 text-text-muted dark:text-gray-400 transition-colors"
             >
               {isDark ? <Sun size={20} /> : <Moon size={20} />}
             </button>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 text-gray-600 dark:text-gray-400"
+              className="p-2 text-text-muted dark:text-gray-400"
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -92,16 +91,15 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
         {/* Mobile Nav */}
         {isMenuOpen && (
-          <div className="md:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
+          <div className="md:hidden border-t border-sage-100 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-lg">
             <div className="px-4 py-4 flex flex-col gap-4">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`text-base font-medium ${
-                    location.pathname === link.path ? 'text-primary-600' : 'text-gray-600 dark:text-gray-400'
-                  }`}
+                  className={`text-base font-bold ${location.pathname === link.path ? 'text-sage-600' : 'text-text-muted dark:text-gray-400'
+                    }`}
                 >
                   {link.label}
                 </Link>
@@ -117,14 +115,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 py-8 transition-colors duration-300">
-        <div className="max-w-4xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+      <footer className="border-t border-sage-100 dark:border-gray-800 bg-white/50 dark:bg-gray-900 py-8 transition-colors duration-300">
+        <div className="max-w-4xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-text-muted dark:text-gray-400">
           <p>© {new Date().getFullYear()} {APP_NAME}. Built with React & Tailwind.</p>
           <div className="flex items-center gap-4">
-            <a href="https://github.com/EricLeeK" target="_blank" rel="noreferrer" className="hover:text-gray-900 dark:hover:text-white transition-colors">
+            <a href="https://github.com/EricLeeK" target="_blank" rel="noreferrer" className="hover:text-sage-600 dark:hover:text-white transition-colors">
               <Github size={20} />
             </a>
-            <Link to="/editor" className="flex items-center gap-1 hover:text-primary-600 transition-colors">
+            <Link to="/editor" className="flex items-center gap-1 hover:text-sage-600 transition-colors">
               <PenTool size={16} />
               <span>Admin</span>
             </Link>

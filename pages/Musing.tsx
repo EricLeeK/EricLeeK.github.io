@@ -62,12 +62,12 @@ const MusingPage: React.FC = () => {
 
   return (
     <article className="max-w-3xl mx-auto space-y-8 animate-fade-in pb-16">
-      <Link to="/musings" className="inline-flex items-center text-sm text-gray-500 hover:text-primary-600 transition-colors mb-4">
+      <Link to="/musings" className="inline-flex items-center text-sm text-text-muted hover:text-sage-600 transition-colors mb-4 font-bold">
         <ArrowLeft size={16} className="mr-1" /> Back to Musings
       </Link>
 
       <header className="space-y-6 text-center">
-        <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight">
+        <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-text-main dark:text-white leading-tight font-serif">
           {musing.title}
         </h1>
       </header>
