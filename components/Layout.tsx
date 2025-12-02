@@ -65,7 +65,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             ))}
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-sage-50 dark:hover:bg-gray-800 text-text-muted dark:text-gray-400 transition-colors"
+              className="btn-icon"
               aria-label="Toggle Dark Mode"
             >
               {isDark ? <Sun size={20} /> : <Moon size={20} />}
@@ -76,13 +76,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <div className="flex items-center gap-4 md:hidden">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-sage-50 dark:hover:bg-gray-800 text-text-muted dark:text-gray-400 transition-colors"
+              className="btn-icon"
             >
               {isDark ? <Sun size={20} /> : <Moon size={20} />}
             </button>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 text-text-muted dark:text-gray-400"
+              className="btn-icon"
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>

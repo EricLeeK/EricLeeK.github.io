@@ -169,7 +169,7 @@ const Post: React.FC = () => {
             </div>
             <button
               onClick={handleCopyJson}
-              className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 bg-white dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded border border-gray-200 dark:border-gray-600 transition-colors"
+              className="btn-outline flex items-center gap-1.5 text-xs"
             >
               {copied ? <Check size={14} className="text-green-500" /> : <Copy size={14} />}
               {copied ? "Copied!" : "Copy JSON"}

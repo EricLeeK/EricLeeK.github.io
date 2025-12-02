@@ -27,14 +27,22 @@
     }
 
     .btn-primary {
-        @apply bg-sage-400 text-white px-6 py-2 rounded-full font-medium transition-colors hover:bg-sage-500 active:scale-95;
+        @apply bg-sage-400 text-white px-6 py-2 rounded-full font-medium transition-all hover:bg-sage-500 active:translate-y-1 active:shadow-none shadow-[0_4px_0_#527059] hover:shadow-[0_4px_0_#527059];
     }
 
     .btn-secondary {
-        @apply bg-salmon-400 text-white px-6 py-2 rounded-full font-medium transition-colors hover:bg-salmon-500 active:scale-95;
+        @apply bg-salmon-400 text-white px-6 py-2 rounded-full font-medium transition-all hover:bg-salmon-500 active:translate-y-1 active:shadow-none shadow-[0_4px_0_#D67D65] hover:shadow-[0_4px_0_#D67D65];
     }
 
     .input-field {
         @apply bg-white border border-gray-100 rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sage-200 transition-all;
+    }
+
+    .btn-icon {
+        @apply p-2 rounded-full bg-white dark:bg-gray-800 text-text-muted dark:text-gray-400 shadow-[0_4px_0_#e5e7eb] dark:shadow-[0_4px_0_#374151] active:translate-y-1 active:shadow-none transition-all border border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700;
+    }
+
+    .btn-outline {
+        @apply px-3 py-1.5 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg border-2 border-gray-200 dark:border-gray-600 shadow-[0_4px_0_#e5e7eb] dark:shadow-[0_4px_0_#4b5563] active:translate-y-1 active:shadow-none transition-all font-medium hover:bg-gray-50 dark:hover:bg-gray-600;
     }
 }

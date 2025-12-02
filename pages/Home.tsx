@@ -25,7 +25,7 @@ const Home: React.FC = () => {
           </div>
           <Link
             to="/musings"
-            className="inline-flex items-center px-6 py-3 rounded-full border border-sage-200 dark:border-gray-700 text-sm font-bold text-sage-600 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-sage-50 dark:hover:bg-primary-900/20 hover:border-sage-300 dark:hover:border-primary-500 transition-all shadow-sm hover:shadow-md"
+            className="inline-flex items-center px-6 py-3 rounded-full border border-sage-200 dark:border-gray-700 text-sm font-bold text-sage-600 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-sage-50 dark:hover:bg-primary-900/20 hover:border-sage-300 dark:hover:border-primary-500 transition-all shadow-[0_4px_0_#e5e7eb] dark:shadow-[0_4px_0_#374151] active:translate-y-1 active:shadow-none"
           >
             进入碎碎念区
             <ArrowRight size={16} className="ml-2" />
