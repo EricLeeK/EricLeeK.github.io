@@ -17,7 +17,7 @@ export default {
             colors: {
                 // Warm cream background
                 bg: {
-                    primary: '#FDFBF7',
+                    primary: '#FAF3E0', // Warmer beige/rice yellow to reduce glare
                     secondary: '#F5F0E6',
                     dark: '#1c1c1e', // Apple-style dark background
                 },

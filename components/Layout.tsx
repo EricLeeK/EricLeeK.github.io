@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { APP_NAME } from '../constants';
-import { Moon, Sun, Menu, X, PenTool, Github } from 'lucide-react';
+import { Moon, Sun, Menu, X, Github, Languages } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -10,6 +11,7 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [isDark, setIsDark] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { language, toggleLanguage, t } = useLanguage();
   const location = useLocation();
 
   useEffect(() => {
@@ -36,9 +38,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   };
 
   const navLinks = [
-    { label: 'Home', path: '/' },
-    { label: 'About', path: '/about' },
-    { label: 'Write', path: '/editor' },
+    { label: t('nav.home'), path: '/' },
+    { label: t('nav.about'), path: '/about' },
   ];
 
   return (
@@ -64,6 +65,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               </Link>
             ))}
             <button
+              onClick={toggleLanguage}
+              className="btn-icon flex items-center gap-1 px-3"
+              aria-label="Toggle Language"
+            >
+              <Languages size={18} />
+              <span className="text-xs font-bold">{language === 'zh' ? 'EN' : '中'}</span>
+            </button>
+            <button
               onClick={toggleTheme}
               className="btn-icon"
               aria-label="Toggle Dark Mode"
@@ -79,6 +88,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               className="btn-icon"
             >
               {isDark ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+            <button
+              onClick={toggleLanguage}
+              className="btn-icon"
+            >
+              <Languages size={20} />
             </button>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -117,15 +132,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       {/* Footer */}
       <footer className="border-t border-sage-100 dark:border-gray-800 bg-white/50 dark:bg-gray-900 py-8 transition-colors duration-300">
         <div className="max-w-4xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-text-muted dark:text-gray-400">
-          <p>© {new Date().getFullYear()} {APP_NAME}. Built with React & Tailwind.</p>
+          <p>© {new Date().getFullYear()} {APP_NAME}. {t('footer.builtWith')}</p>
           <div className="flex items-center gap-4">
             <a href="https://github.com/EricLeeK" target="_blank" rel="noreferrer" className="hover:text-sage-600 dark:hover:text-white transition-colors">
               <Github size={20} />
             </a>
-            <Link to="/editor" className="flex items-center gap-1 hover:text-sage-600 transition-colors">
-              <PenTool size={16} />
-              <span>Admin</span>
-            </Link>
           </div>
         </div>
       </footer>

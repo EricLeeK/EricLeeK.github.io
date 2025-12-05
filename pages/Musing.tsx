@@ -3,9 +3,11 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { getMusingById } from '../services/musingsService';
 import { Musing } from '../types';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const MusingPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const { language, t } = useLanguage();
   const [musing, setMusing] = useState<Musing | undefined>(undefined);
   const [content, setContent] = useState<string>('');
   const [isLoadingContent, setIsLoadingContent] = useState(false);
@@ -26,17 +28,25 @@ const MusingPage: React.FC = () => {
     if (!musing) return;
 
     const loadContent = async () => {
+      // Check for English content if language is English
+      if (language === 'en' && musing.contentEn) {
+        setContent(musing.contentEn);
+        return;
+      }
       if (musing.content) {
         setContent(musing.content);
         return;
       }
 
-      if (musing.contentPath) {
+      // Check for English content path if language is English
+      const path = (language === 'en' && musing.contentPathEn) ? musing.contentPathEn : musing.contentPath;
+
+      if (path) {
         setIsLoadingContent(true);
         try {
-          const response = await fetch(musing.contentPath);
+          const response = await fetch(path);
           if (!response.ok) {
-            throw new Error(`Failed to load content from ${musing.contentPath}`);
+            throw new Error(`Failed to load content from ${path}`);
           }
           const text = await response.text();
           setContent(text);
@@ -50,7 +60,7 @@ const MusingPage: React.FC = () => {
     };
 
     loadContent();
-  }, [musing]);
+  }, [musing, language]);
 
   if (!musing) {
     return (
@@ -63,12 +73,12 @@ const MusingPage: React.FC = () => {
   return (
     <article className="max-w-3xl mx-auto space-y-8 animate-fade-in pb-16">
       <Link to="/musings" className="inline-flex items-center text-sm text-text-muted hover:text-sage-600 transition-colors mb-4 font-bold">
-        <ArrowLeft size={16} className="mr-1" /> Back to Musings
+        <ArrowLeft size={16} className="mr-1" /> {t('musings.back')}
       </Link>
 
       <header className="space-y-6 text-center">
         <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-text-main dark:text-white leading-tight font-serif">
-          {musing.title}
+          {language === 'en' && musing.titleEn ? musing.titleEn : musing.title}
         </h1>
       </header>
 

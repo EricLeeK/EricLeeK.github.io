@@ -9,6 +9,12 @@ export interface BlogPost {
   tags: string[];
   coverImage?: string;
   author: string;
+  category?: 'Personal Thoughts' | 'Hardcore Learning';
+  // English Content
+  titleEn?: string;
+  excerptEn?: string;
+  contentEn?: string;
+  contentPathEn?: string;
 }
 
 export interface Musing {
@@ -16,6 +22,10 @@ export interface Musing {
   title: string;
   content: string;
   contentPath?: string; // Optional: path to .md file in public folder (e.g., '/musings/my-note.md')
+  // English Content
+  titleEn?: string;
+  contentEn?: string;
+  contentPathEn?: string;
 }
 
 export interface NavigationItem {
