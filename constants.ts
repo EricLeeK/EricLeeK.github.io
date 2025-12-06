@@ -162,11 +162,11 @@ Nano Banana Pro is not just another model iteration; it's a fundamental paradigm
     readTime: "20 min read",
     tags: ["JAX-FEM", "Finite Element", "Python", "Physics"],
     author: AUTHOR_NAME,
-    coverImage: "https://picsum.photos/800/403?grayscale",
+    coverImage: "/images/JAX-FEM Cover.avif",
     category: "Hardcore Learning",
     titleEn: "JAX-FEM Deep Dive: From Kernel Design to Elastoplasticity",
     excerptEn: "In-depth analysis of JAX-FEM's core design philosophy, and detailed explanation of mathematical principles and code implementation for linear elasticity, hyperelasticity, and elastoplasticity.",
-    contentPathEn: "/posts/jax-fem-comprehensive.md" // User requested NOT to translate this one yet.
+    contentPathEn: "/posts/jax-fem-comprehensive-en.md"
   },
   // Example of using an external file to keep constants.ts small:
   /*

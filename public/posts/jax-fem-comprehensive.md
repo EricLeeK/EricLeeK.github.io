@@ -209,7 +209,7 @@ JAX-FEM 的代码结构非常标准化，通过这三个例子，可以清晰地
 <!-- TAB_BREAK: 线弹性 -->
 
 
-# JAX-FEM - 1 ：线弹性问题的数学原理与代码实现
+# JAX-FEM 深度解析（一）：线弹性问题的数学原理与代码实现
 
 在有限元分析（FEM）中，线弹性问题是最基础也是最重要的入门案例。虽然 JAX-FEM 的代码看起来非常简洁，只有短短几十行，但其背后隐藏了完整的连续介质力学与变分原理。我们从这里开始，深入理解 JAX-FEM 的工作原理。
 
@@ -248,6 +248,10 @@ $$
 ### 1.3 弱形式的严格推导
 
 这是理解 JAX-FEM 核函数（Kernel）的关键步骤。
+
+![Integration by Parts Geometric Illustration](/images/Integration%20by%20Parts%20Geometric%20Illustration.avif)
+
+
 
 **第一步：加权积分**
 在平衡方程两边同时点乘一个**测试函数（Test Function）** $\boldsymbol{v}$（也称为虚位移），并在整个体积 $\Omega$ 上积分：
@@ -422,6 +426,10 @@ $$
 $$
 其中 $\boldsymbol{I}$ 是单位矩阵，$\nabla \boldsymbol{u}$ 是位移梯度。
 
+![Lagrangian vs Eulerian Kinematic Description](/images/Lagrangian%20vs%20Eulerian%20Kinematic%20Description.avif)
+
+
+
 ---
 
 ## 2. 强形式与弱形式
@@ -543,6 +551,12 @@ class HyperElasticity(Problem):
     *   这一切都是在编译时完成的，执行效率极高。
 3.  **`first_PK_stress`**: 这是最终传给 FEM 求解器的核。它完成了从 $\nabla \boldsymbol{u}$ 到 $\boldsymbol{F}$ 再到 $\boldsymbol{P}$ 的桥接。
 
+![JAX Automatic Differentiation Workflow](/images/JAX%20Automatic%20Differentiation%20Workflow.avif)
+
+
+
+
+
 ### 4.3 为什么这比传统方法强？
 *   **零推导成本**：如果你想换一个材料模型（比如 Mooney-Rivlin 或 Ogden 模型），你只需要改写 `psi` 函数那几行代码。不需要重新推导应力公式。
 *   **不仅是一阶导**：求解非线性方程（牛顿-拉夫逊法）需要切线刚度矩阵（Tangent Stiffness Matrix），即应力对应变的导数（二阶导）。JAX-FEM 在求解器内部可以通过 `jax.jacfwd` 或 `jax.hessian` **再一次自动微分** 得到刚度矩阵。这意味着刚度矩阵也不用手写。
@@ -640,7 +654,10 @@ $$
 3.  你假设坡度不变，沿着切线方向走，走到切线与 $0$ 相交的地方，作为下一个位置 $x_{n+1}$。
 4.  重复这个过程，直到你踩在 $0$ 线为止。
 
-========放图片！！！！！！！！！！=========
+![Newton-Raphson Method](/images/NFM.jpg)
+
+
+
 
 ### 2.2 数学推导（FEM 版）
 我们的目标是解 $R(U) = 0$。假设第 $n$ 步的解是 $U_n$，但它还不够准，真正的解是 $U_n + \Delta U$。
@@ -741,6 +758,10 @@ JAX-FEM 在求解超弹性问题时，后台实际上在跑这个循环：
 ## 2. 算法核心：回退映射 (Return Mapping)
 
 为了在计算机中求解这个不等式约束问题，我们采用 **Predictor-Corrector（预测-校正）** 策略，也叫 **Radial Return Mapping（径向回退算法）**。
+
+
+
+![J2 Yield Surface Radial Return Corrected](/images/J2%20Yield%20Surface%20Radial%20Return%20Corrected.avif)
 
 这是一个两步走的逻辑：
 
@@ -905,9 +926,10 @@ class Plasticity(Problem):
 2.  **中间层**：牛顿-拉夫逊非线性求解（Newton-Raphson Solver）。
 3.  **最内层**：物理内核（Kernel / Constitutive Law），即 JAX 自动微分发生的地方。
 
----
 
-=======放流程图！！！！！！！！！！！！！！============
+
+
+![Elastoplastic FEM Flowchart Cartoon Version](/images/Elastoplastic%20FEM%20Flowchart%20Cartoon%20Version.avif)
 
 ### 2. 详细步骤解析
 
@@ -969,9 +991,12 @@ class Plasticity(Problem):
 这就是为什么 JAX-FEM 代码里有一个专门的 `update_stress_strain` 函数，它必须在 `solver.solve` 成功之后手动调用。
 
 ---
+
 ### 4. 几个疑难解答（利用AI解答）
 
-阶段三和阶段四在同一个边界条件下是循环吗，感觉不是吧，只需要判断一步是否屈服不就行了，即使屈服也就直接通过那个算式拉回屈服面上就没了。
+---
+
+### 阶段三和阶段四在同一个边界条件下是循环吗，感觉不是吧，只需要判断一步是否屈服不就行了，即使屈服也就直接通过那个算式拉回屈服面上就没了。
 
 ---
 **Ans：** 这是一个非常敏锐且极具深度的直觉！你其实触碰到了有限元（FEM）中**“局部（Local）”**与**“全局（Global）”**两个层面的核心矛盾。
@@ -1034,6 +1059,12 @@ class Plasticity(Problem):
 
 **牛顿循环的作用**就是沿着切线方向，不断修正位移 $u$，直到找到那个**既在应力-应变曲线上（满足本构），又满足力平衡（满足方程）**的点。
 
+
+
+
+
+![Why Newton Iteration Must Loop with Plasticity](/images/Why%20Newton%20Iteration%20Must%20Loop%20with%20Plasticity.avif)
+
 #### 3. JAX-FEM 中的具体体现
 
 在 JAX-FEM 的代码逻辑中：
@@ -1056,7 +1087,7 @@ class Plasticity(Problem):
 所以，阶段三和阶段四是如影随形的：**牛顿法没改一次猜测（阶段三），物理内核就得重新做一次“拉回判决”（阶段四），看新的猜测是否满足平衡。**
 
 ---
-**继续提问：** 意思是，阶段三修正了之后再次进入阶段4看是否屈服，如果还是屈服怎么办，还要修正，然后再算残余应力，再调整位移吗?
+### **继续提问：** 意思是，阶段三修正了之后再次进入阶段4看是否屈服，如果还是屈服怎么办，还要修正，然后再算残余应力，再调整位移吗?
 
 ---
 **是的，完全正确！你的理解非常到位！**
@@ -1129,7 +1160,7 @@ class Plasticity(Problem):
 JAX-FEM 的强大之处在于，**在每一轮中，即使发生了“拉回”这种剧烈的非线性操作，JAX 都能自动算出准确的导数（切线刚度）**，告诉求解器下一轮位移该调整多少，从而让这个循环快速收敛。
 
 ---
-**还没明白：** 具体是怎么试的，肯定不是随机加上个数吧
+### **还没明白：** 具体是怎么试的，肯定不是随机加上个数吧
 
 ---
 这绝对不是随机试的，这是 **牛顿-拉夫逊法（Newton-Raphson）** 最迷人、最精妙的地方。
@@ -1202,7 +1233,7 @@ JAX 会自动穿透那个 `if` 判断，发现：“哦，这里走的是塑性�
 这就是为什么牛顿法能在这个框架下高效工作的原因。
 
 ---
-**最后一个细节：** 那第一步的u_grad是啥，我咋没看到定义这个数?
+### **最后一个细节：** 那第一步的u_grad是啥，我咋没看到定义这个数?
 
 ---
 
