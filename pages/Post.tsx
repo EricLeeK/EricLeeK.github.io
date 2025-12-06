@@ -128,7 +128,7 @@ const Post: React.FC = () => {
         </code>
       );
     },
-    img: ({ node, src, alt, ...props }: any) => (
+    img: ({ src, alt }: any) => (
       <ImageLightbox src={src || ''} alt={alt || ''} />
     )
   };
