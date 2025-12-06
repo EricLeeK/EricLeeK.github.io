@@ -10,6 +10,7 @@ import { ArrowLeft, Calendar, Clock, User } from 'lucide-react';
 import { getPostById } from '../services/blogService';
 import { BlogPost } from '../types';
 import { useLanguage } from '../contexts/LanguageContext';
+import ImageLightbox from '../components/ImageLightbox';
 
 const Post: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -126,7 +127,10 @@ const Post: React.FC = () => {
           {children}
         </code>
       );
-    }
+    },
+    img: ({ node, src, alt, ...props }: any) => (
+      <ImageLightbox src={src || ''} alt={alt || ''} />
+    )
   };
 
   if (!post) return <div className="flex justify-center py-20"><div className="w-8 h-8 border-4 border-primary-600 border-t-transparent rounded-full animate-spin"></div></div>;
