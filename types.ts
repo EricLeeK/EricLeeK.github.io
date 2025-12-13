@@ -20,6 +20,7 @@ export interface BlogPost {
 export interface Musing {
   id: string;
   title: string;
+  date?: string;
   content: string;
   contentPath?: string; // Optional: path to .md file in public folder (e.g., '/musings/my-note.md')
   // English Content

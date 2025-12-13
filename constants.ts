@@ -7,6 +7,21 @@ export const AUTHOR_NAME = "Eric Lee";
 // Users can edit this file to add new posts permanently.
 export const INITIAL_POSTS: BlogPost[] = [
   {
+    id: "karpathy-interview-agents-decade",
+    title: "Andrej Karpathy 访谈：智能体的十年",
+    excerpt: "Andrej Karpathy 提出了“智能体的十年”这一核心观点，反驳了当下关于“智能体元年”的过度炒作。他认为，尽管 Claude 和 Codex 等早期形态令人印象深刻，但要打造出真正如实习生般可靠的自主智能体，我们仍需十年的技术积淀。",
+    contentPath: '/posts/Andrej_Karpathy_interview.md',
+    date: "2025-12-13",
+    readTime: "90 min read",
+    tags: ["AI", "Agents", "Interview", "Deep Learning"],
+    author: AUTHOR_NAME,
+    coverImage: "/images/karpathy简要版信息图.avif",
+    category: "Personal Thoughts",
+    titleEn: "Andrej Karpathy Interview: The Decade of Agents",
+    excerptEn: "Andrej Karpathy argues that we are entering the 'Decade of Agents', predicting a 10-year journey to reliable autonomous AI agents.",
+    contentPathEn: '/posts/Andrej_Karpathy_interview.md',
+  },
+  {
     id: "welcome-to-shiyao-blog",
     title: "欢迎来到我的思维实验室",
     excerpt: "Welcome to my personal blog!",
@@ -168,6 +183,21 @@ Nano Banana Pro is not just another model iteration; it's a fundamental paradigm
     excerptEn: "In-depth analysis of JAX-FEM's core design philosophy, and detailed explanation of mathematical principles and code implementation for linear elasticity, hyperelasticity, and elastoplasticity.",
     contentPathEn: "/posts/jax-fem-comprehensive-en.md"
   },
+  {
+    id: "j2-to-drucker-prager",
+    title: "从 J2 到 Drucker-Prager，一文看懂塑性力学的\"圆与锥\"",
+    excerpt: "如果你曾经打开过任何一款有限元分析软件，你一定见过 von Mises 和 Drucker-Prager。本文将带你从几何直观出发，穿越数学公式的丛林，最终抵达数值算法的彼岸，帮你构建一个关于塑性本构模型的完整认知框架。",
+    contentPath: "/posts/J2 to Drucker-Prager.md",
+    date: "2025-12-10",
+    readTime: "80 min read",
+    tags: ["Plasticity", "Math", "JAX-FEM"],
+    author: AUTHOR_NAME,
+    coverImage: "https://picsum.photos/800/403?grayscale",
+    category: "Hardcore Learning",
+    titleEn: "From J2 to Drucker-Prager: Understanding the 'Circle and Cone' of Plasticity Mechanics",
+    excerptEn: "Deep dive into the geometric intuition, mathematical formulation, and numerical implementation of J2 and Drucker-Prager plasticity models.",
+    contentPathEn: "/posts/J2 to Drucker-Prager.md"
+  },
   // Example of using an external file to keep constants.ts small:
   /*
   {
@@ -187,6 +217,7 @@ export const INITIAL_MUSINGS: Musing[] = [
   {
     id: "first-musing-placeholder",
     title: "碎碎念 #1：先把小角落搭起来",
+    date: "2025-11-15T10:00:00Z",
     content: `
 今天先把这个小角落搭好，等哪天灵感突然路过，就把它们轻轻放在这里。
 
@@ -202,10 +233,53 @@ No structure needed, no conclusion required, just recording the thought of that 
   {
     id: "example-markdown-musing",
     title: "示例碎碎念：来自 markdown 文件",
+    date: "2025-11-01T15:30:00Z",
     content: "", // 实际内容从 markdown 文件加载
     contentPath: "/musings/example-musing.md",
     titleEn: "Example Musing: From Markdown File",
     contentEn: "",
     contentPathEn: "/musings/example-musing.md", // Assuming same file or create a new one if needed
+  },
+  {
+    id: "pending-learning-motivation",
+    title: "待写ing：学习动机的边界",
+    date: "2025-12-13T14:00:00Z",
+    content: `
+- 重新梳理我对“学习是为了功利”与“学习是天生渴望”之间的感受与冲突。
+- 提出自己在现实场景中难以察觉的“边界线”：哪些时刻我真的在为目标而学习？哪些时刻只是不可控的好奇？
+- 记录可能的切入点：生活中的一段对话、某次刷新的技能曲线、跨领域联系的灵感闪回。
+- 设想几种读者共鸣的场景，把这种自省拆成可以展开的章节。
+
+> 提示：完整版可能会调整顺序或添加细节，这里只是提纲式待写草案。
+    `,
+    contentEn: `
+- Map out the tension between learning for utility and learning driven by a deeper curiosity urge.
+- Flag the blind spots in my self-reflection: when am I truly learning for a goal, and when am I just following a craving to understand?
+- List possible entry points (a conversation, a surprising skill spike, a cross-domain insight) that could anchor each section.
+- Sketch how to turn these notes into reader-friendly vignettes or prompts for deeper exploration.
+
+> Note: the final piece might shift sequence or add new dimensions; treat this as an outline draft.
+    `,
+  },
+  {
+    id: "pending-language-culture",
+    title: "待写ing：语言原生产生的文化差异",
+    date: "2025-12-12T10:00:00Z",
+    content: `
+- 列出几个语言差异引发的认知裂缝：比如某些文化词汇带来的思维路径差异。
+- 拟定真实案例（如阅读、讨论或翻译时遇到的断层）作为后续展开的起点。
+- 讨论如何用写作或工具同步感知这种差异，是否需要图表/例句/对照。
+- 规划与读者的互动：提出哪些问题可以让大家反思自己语言中的文化负载？
+
+> 提示：正式文章不一定照这个顺序，欢迎在写作过程中重排。
+    `,
+    contentEn: `
+- Enumerate the cognitive gaps born from language-specific cultural differences (e.g., how certain words steer thought in subtle ways).
+- Pick lived instances—reading, conversations, or translations—where I felt the mismatch and could dive deeper later.
+- Consider visuals, example sentences, or side-by-side comparisons to make the difference tangible.
+- Outline reader-facing prompts: what questions can invite them to notice the cultural weight in their own language use?
+
+> Note: this is just a skeletal plan; the final essay may reorder or expand the points.
+    `,
   },
 ];

@@ -12,6 +12,18 @@ const MusingPage: React.FC = () => {
   const [content, setContent] = useState<string>('');
   const [isLoadingContent, setIsLoadingContent] = useState(false);
   const navigate = useNavigate();
+  const formatMusingDate = (date?: string) => {
+    if (!date) return '';
+    const locale = language === 'en' ? 'en-US' : 'zh-CN';
+    return new Intl.DateTimeFormat(locale, {
+      year: 'numeric',
+      month: 'short',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false,
+    }).format(new Date(date));
+  };
 
   useEffect(() => {
     if (id) {
@@ -80,6 +92,11 @@ const MusingPage: React.FC = () => {
         <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-text-main dark:text-white leading-tight font-serif">
           {language === 'en' && musing.titleEn ? musing.titleEn : musing.title}
         </h1>
+        {musing.date && (
+          <p className="text-sm uppercase tracking-widest text-text-muted dark:text-gray-400">
+            {formatMusingDate(musing.date)}
+          </p>
+        )}
       </header>
 
       <div className="prose prose-lg dark:prose-invert prose-headings:font-bold prose-headings:tracking-tight prose-a:text-primary-600 hover:prose-a:text-primary-500 mx-auto min-h-[200px]">

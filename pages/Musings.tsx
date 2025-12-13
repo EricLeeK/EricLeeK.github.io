@@ -9,6 +9,19 @@ const Musings: React.FC = () => {
   const [musings, setMusings] = useState<Musing[]>([]);
   const { language, t } = useLanguage();
 
+  const formatMusingDate = (date?: string) => {
+    if (!date) return '';
+    const locale = language === 'en' ? 'en-US' : 'zh-CN';
+    return new Intl.DateTimeFormat(locale, {
+      year: 'numeric',
+      month: 'short',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false,
+    }).format(new Date(date));
+  };
+
   useEffect(() => {
     setMusings(getMusings());
   }, []);
@@ -25,30 +38,38 @@ const Musings: React.FC = () => {
       </div>
 
       <div className="grid gap-8 md:grid-cols-2">
-        {musings.map((musing, index) => (
-          <Link
-            to={`/musing/${musing.id}`}
-            key={musing.id}
-            className={`group flex flex-col bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-card hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 ${index === 0 ? 'md:col-span-2 md:flex-row md:items-center' : ''}`}
-          >
-            <div className={`p-8 flex flex-col justify-between ${index === 0 ? 'md:p-10 md:h-full' : 'flex-grow'}`}>
-              <div className="space-y-4">
-                <h2 className="text-xl md:text-2xl font-bold text-text-main dark:text-white group-hover:text-salmon-400 dark:group-hover:text-salmon-400 transition-colors font-serif">
-                  {language === 'en' && musing.titleEn ? musing.titleEn : musing.title}
-                </h2>
-                <p className="text-text-muted dark:text-gray-300 line-clamp-3 leading-relaxed whitespace-pre-line">
-                  {(language === 'en' && musing.contentEn ? musing.contentEn : musing.content) || t('musings.clickToView')}
-                </p>
-              </div>
+        {musings.map((musing, index) => {
+          const formattedDate = formatMusingDate(musing.date);
+          return (
+            <Link
+              to={`/musing/${musing.id}`}
+              key={musing.id}
+              className={`group flex flex-col bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-card hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 ${index === 0 ? 'md:col-span-2 md:flex-row md:items-center' : ''}`}
+            >
+              <div className={`p-8 flex flex-col justify-between ${index === 0 ? 'md:p-10 md:h-full' : 'flex-grow'}`}>
+                <div className="space-y-4">
+                  <h2 className="text-xl md:text-2xl font-bold text-text-main dark:text-white group-hover:text-salmon-400 dark:group-hover:text-salmon-400 transition-colors font-serif">
+                    {language === 'en' && musing.titleEn ? musing.titleEn : musing.title}
+                  </h2>
+                  {formattedDate && (
+                    <p className="text-xs uppercase tracking-widest text-text-muted dark:text-gray-400">
+                      {formattedDate}
+                    </p>
+                  )}
+                  <p className="text-text-muted dark:text-gray-300 line-clamp-3 leading-relaxed whitespace-pre-line">
+                    {(language === 'en' && musing.contentEn ? musing.contentEn : musing.content) || t('musings.clickToView')}
+                  </p>
+                </div>
 
-              <div className="mt-6 flex items-center justify-end">
-                <span className="flex items-center text-sm font-bold text-salmon-400 dark:text-salmon-400 group-hover:gap-2 transition-all">
-                  {t('musings.readMore')} <ArrowRight size={16} className="ml-1" />
-                </span>
+                <div className="mt-6 flex items-center justify-end">
+                  <span className="flex items-center text-sm font-bold text-salmon-400 dark:text-salmon-400 group-hover:gap-2 transition-all">
+                    {t('musings.readMore')} <ArrowRight size={16} className="ml-1" />
+                  </span>
+                </div>
               </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          );
+        })}
       </div>
     </div>
   );
