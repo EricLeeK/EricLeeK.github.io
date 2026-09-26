@@ -1,2 +1,20 @@
+<p align="center">
+  <img src="./assets/readme/hero.gif" width="100%" alt="Personal blog repository. Site content has not yet been committed. Conceptual overview.">
+</p>
+
 # EricLeeK.github.io
-个人博客
+
+个人博客仓库，当前处于内容准备阶段。
+
+## 当前状态
+
+仓库目前尚未提供站点源码、文章或构建配置。这里用于记录博客的后续建设与内容入口。
+
+后续加入站点内容时，可在这里补充文章入口、本地预览和发布说明。
+
+<details>
+<summary>Static overview</summary>
+
+[Open the static SVG](./assets/readme/hero.svg).
+
+</details>

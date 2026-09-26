@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="440" viewBox="0 0 1200 440" role="img" aria-labelledby="title desc">
+  <title id="title">EricLeeK.github.io</title>
+  <desc id="desc">Personal blog repository. Site content has not yet been committed. The diagram is a conceptual illustration, not a benchmark or application screenshot.</desc>
+  <defs>
+    <clipPath id="frame">
+      <rect width="1200" height="440" rx="24" />
+    </clipPath>
+  </defs>
+  <g clip-path="url(#frame)">
+    <rect x="0" y="0" width="1200" height="440" rx="24" fill="#f3f0e8" />
+    <text x="60" y="68" font-family="'SFMono-Regular',Menlo,monospace" font-size="18" font-weight="600" fill="#7b7d65" text-anchor="start">PERSONAL BLOG / REPOSITORY</text>
+    <text x="60" y="165" font-family="Georgia,'Songti SC',serif" font-size="94" font-weight="500" fill="#373d42" text-anchor="start">EricLeeK</text>
+    <text x="60" y="231" font-family="'SFMono-Regular',Menlo,monospace" font-size="62" font-weight="500" fill="#737764" text-anchor="start">.github.io</text>
+    <text x="60" y="304" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC',sans-serif" font-size="28" font-weight="500" fill="#373d42" text-anchor="start">A place to write. Content to come.</text>
+    <text x="60" y="401" font-family="'SFMono-Regular',Menlo,monospace" font-size="18" font-weight="600" fill="#7b7d65" text-anchor="start">CURRENT STATE / README ONLY</text>
+    <rect x="827" y="49" width="292" height="344" rx="10" fill="#fffdf6" stroke="#d9d4c7" stroke-width="2" />
+    <text x="859" y="99" font-family="'SFMono-Regular',Menlo,monospace" font-size="18" font-weight="600" fill="#7b7d65" text-anchor="start">DRAFT</text>
+    <g id="page-title">
+      <text x="857" y="180" font-family="'SFMono-Regular',Menlo,monospace" font-size="41" font-weight="500" fill="#373d42" text-anchor="start"># Hello</text>
+    </g>
+    <g id="page-lines">
+      <path d="M859 229H1077M859 267H1043M859 305H992" fill="none" stroke="#bfc0ad" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,42 @@
+{
+  "width": 1200,
+  "fps": 30,
+  "duration": 5.2,
+  "colors": 256,
+  "dither": "none",
+  "clip_to_base_alpha": true,
+  "max_size_mb": 2.0,
+  "layers": [
+    {
+      "id": "page-title",
+      "enter": {
+        "start": 0.15,
+        "end": 1.1,
+        "from": [
+          0,
+          24
+        ]
+      },
+      "exit": {
+        "start": 4.35,
+        "end": 5.16,
+        "to": [
+          0,
+          -12
+        ]
+      }
+    }
+  ],
+  "reveals": [
+    {
+      "id": "page-lines",
+      "axis": "x",
+      "start": 0.46,
+      "end": 1.46,
+      "exit": {
+        "start": 4.35,
+        "end": 5.16
+      }
+    }
+  ]
+}
