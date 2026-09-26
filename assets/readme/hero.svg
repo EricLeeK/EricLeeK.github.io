@@ -1,25 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="440" viewBox="0 0 1200 440" role="img" aria-labelledby="title desc">
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="610" viewBox="0 0 1200 610" role="img" aria-labelledby="title desc">
   <title id="title">EricLeeK.github.io</title>
-  <desc id="desc">Personal blog repository. Site content has not yet been committed. The diagram is a conceptual illustration, not a benchmark or application screenshot.</desc>
+  <desc id="desc">个人博客仓库仍在内容准备阶段，空白文章页表示尚未提交站点源码与文章。</desc>
   <defs>
-    <clipPath id="frame">
-      <rect width="1200" height="440" rx="24" />
+    <clipPath id="canvas">
+      <rect width="1200" height="610" rx="26" />
     </clipPath>
   </defs>
-  <g clip-path="url(#frame)">
-    <rect x="0" y="0" width="1200" height="440" rx="24" fill="#f3f0e8" />
-    <text x="60" y="68" font-family="'SFMono-Regular',Menlo,monospace" font-size="18" font-weight="600" fill="#7b7d65" text-anchor="start">PERSONAL BLOG / REPOSITORY</text>
-    <text x="60" y="165" font-family="Georgia,'Songti SC',serif" font-size="94" font-weight="500" fill="#373d42" text-anchor="start">EricLeeK</text>
-    <text x="60" y="231" font-family="'SFMono-Regular',Menlo,monospace" font-size="62" font-weight="500" fill="#737764" text-anchor="start">.github.io</text>
-    <text x="60" y="304" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC',sans-serif" font-size="28" font-weight="500" fill="#373d42" text-anchor="start">A place to write. Content to come.</text>
-    <text x="60" y="401" font-family="'SFMono-Regular',Menlo,monospace" font-size="18" font-weight="600" fill="#7b7d65" text-anchor="start">CURRENT STATE / README ONLY</text>
-    <rect x="827" y="49" width="292" height="344" rx="10" fill="#fffdf6" stroke="#d9d4c7" stroke-width="2" />
-    <text x="859" y="99" font-family="'SFMono-Regular',Menlo,monospace" font-size="18" font-weight="600" fill="#7b7d65" text-anchor="start">DRAFT</text>
-    <g id="page-title">
-      <text x="857" y="180" font-family="'SFMono-Regular',Menlo,monospace" font-size="41" font-weight="500" fill="#373d42" text-anchor="start"># Hello</text>
+  <g clip-path="url(#canvas)">
+    <rect x="0" y="0" width="1200" height="610" rx="0" fill="#EDE8DB" />
+    <text x="50" y="45" font-family="Menlo, Consolas, monospace" font-size="18" font-weight="600" fill="#946544">A PERSONAL SPACE / IN PREPARATION</text>
+    <text x="46" y="134" font-family="Georgia, Songti SC, serif" font-size="90" font-weight="500" fill="#3D382F">EricLeeK</text>
+    <text x="50" y="191" font-family="Georgia, Songti SC, serif" font-size="45" font-weight="400" fill="#946544">.github.io</text>
+    <text x="52" y="269" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Hiragino Sans, sans-serif" font-size="45" font-weight="400" fill="#3D382F">下一篇，</text>
+    <text x="52" y="328" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Hiragino Sans, sans-serif" font-size="45" font-weight="400" fill="#3D382F">仍在准备。</text>
+    <text x="54" y="414" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Hiragino Sans, sans-serif" font-size="27" font-weight="400" fill="#946544">个人博客仓库</text>
+    <text x="54" y="457" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Hiragino Sans, sans-serif" font-size="24" font-weight="400" fill="#958675">文章、站点源码与构建配置待加入。</text>
+    <g transform="rotate(-6 841 335)">
+      <rect x="624" y="163" width="439" height="341" rx="3" fill="#D6CBB4" />
     </g>
-    <g id="page-lines">
-      <path d="M859 229H1077M859 267H1043M859 305H992" fill="none" stroke="#bfc0ad" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+    <g transform="rotate(3 855 317)">
+      <rect x="638" y="133" width="439" height="371" rx="3" fill="#FFFBEF" stroke="#D3C6AE" stroke-width="1" />
+      <text x="667" y="179" font-family="Menlo, Consolas, monospace" font-size="18" font-weight="500" fill="#946544">DRAFT / 001</text>
+      <path d="M667 203 H1048" fill="none" stroke="#D8C7AE" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+      <text x="667" y="259" font-family="Georgia, Songti SC, serif" font-size="33" font-weight="400" fill="#3D382F">首篇文章待写</text>
+      <path d="M670 312 H1022" fill="none" stroke="#E2DBC9" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M670 354 H1022" fill="none" stroke="#E2DBC9" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M670 396 H1022" fill="none" stroke="#E2DBC9" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M670 438 H1022" fill="none" stroke="#E2DBC9" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <text x="53" y="563" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Hiragino Sans, sans-serif" font-size="25" font-weight="400" fill="#3D382F">状态：内容准备阶段</text>
+    <g id="draft-marker" transform="rotate(3 855 317)">
+      <path d="M672 270 H892" fill="none" stroke="#946544" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+      <rect x="1002" y="123" width="30" height="85" rx="1" fill="#C5A77E" />
+      <path d="M1002 208 L1017 195 L1032 208" fill="#EDE8DB" stroke="#EDE8DB" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
     </g>
   </g>
 </svg>

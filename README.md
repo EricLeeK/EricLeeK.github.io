@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/readme/hero.gif" width="100%" alt="Personal blog repository. Site content has not yet been committed. Conceptual overview.">
+  <img src="./assets/readme/hero.gif" width="100%" alt="个人博客仓库仍在内容准备阶段，空白文章页表示尚未提交站点源码与文章。">
 </p>
 
 # EricLeeK.github.io
